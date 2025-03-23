@@ -16,3 +16,6 @@ I first built this for a previous version of OOTP. There will therefore be vario
 Any clear errors arising are my own, not due to the creators mentioned above.
 
 Pull requests and feedback welcomed.
+
+OOTP forums post: https://forums.ootpdevelopments.com/showthread.php?t=361580
+Youtube introductory video including instructions on how to install: https://www.youtube.com/watch?v=P-F4Djmjes0
