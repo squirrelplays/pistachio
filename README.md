@@ -1,3 +1,9 @@
+# Pistachio UI
+
+The goal of this fork is to experiment with Flask and Angular 19 to develop a PWA (Progressive Web Application) for Pistachio that increases convenience, efficiency, and ease of use for the end-user.
+
+# Squirrel's description for Pistachio
+
 Pistachio is a projection system for the computer game Out of the Park Baseball.
 
 It projects:
