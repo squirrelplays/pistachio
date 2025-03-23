@@ -14,7 +14,7 @@ With thanks to three public sources of info used for the original projections:
 
 > OOTP calculator for logic for getting from FIP to WAR for pitchers (https://ootpcalculator.com/)
 
-I first built this for a previous version of OOTP. There will therefore be various analytical points that are not up-to-date as compared to the latest version (OOTP 26 at the time of writing).
+I first built this for a previous version of OOTP. There are various analytical points that are not up-to-date as compared to the latest version (OOTP 26 at the time of writing). That said, I think this is in usable shape for OOTP 26.
 
 Any clear errors arising are my own, not due to the creators mentioned above.
 
