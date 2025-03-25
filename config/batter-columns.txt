@@ -1,1 +1,1 @@
-name,age,team
+name,age,team,warOverall,opsPlusOverall,warPotential,opsPlusPotential,flagged

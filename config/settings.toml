@@ -1,4 +1,5 @@
 [Settings]
 csv_path = "C:/Users/chris/Documents/Out of the Park Developments/OOTP Baseball 26/saved_games/Gunch 2.0.lg/import_export/csv"
 scout_id = 3019
-team_id = "MON"
+team_id = "TB"
+gb_weight = 59

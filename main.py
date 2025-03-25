@@ -1,10 +1,23 @@
+import webview
 from flask import Flask, jsonify, send_from_directory, request
 from flask_cors import CORS
 import subprocess
 import toml
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 CORS(app)
+
+@app.route('/')
+def serve_angular():
+    return send_from_directory('app.static_folder', 'index.html')
+
+@app.route('/<path:path>')
+def serve_angular_files(path):
+    if os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/runNotebook', methods=['POST'])
 def run_notebook():
@@ -40,12 +53,14 @@ def set_settings():
     data = request.get_json()
     print(data)
 
-    if 'csv_path' in data:
+    if 'csv_path' in data and data['csv_path'] != '':
         config['Settings']['csv_path'] = data['csv_path']
-    if 'scout_id' in data:
-        config['Settings']['scout_id'] = data['scout_id']
+    if 'scout_id' in data and data['scout_id'] != '':
+        config['Settings']['scout_id'] = int(data['scout_id'])
     if 'team_id' in data:
         config['Settings']['team_id'] = data['team_id']
+    if 'gb_weight' in data and data['gb_weight'] != '':
+        config['Settings']['gb_weight'] = int(data['gb_weight'])
 
     with open('config/settings.toml', 'w') as configfile:
         toml.dump(config, configfile)
@@ -80,8 +95,17 @@ def get_flagged():
 
 @app.route('/setFlagged', methods=['POST'])
 def set_flagged():
-    return jsonify()
+    data = request.get_data(as_text=True)
+    with open('config/flagged.txt', 'w') as file:
+        file.write(data)
+    return jsonify('Flagged players updated successfully')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Start Flask app in a separate thread
+    import threading
+    threading.Thread(target=app.run, kwargs={'debug': False}).start()
+
+    # Open the front-end in a PyWebView window
+    webview.create_window('Pistachio App', 'http://127.0.0.1:5000/home')
+    webview.start()
