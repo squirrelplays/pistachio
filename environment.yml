@@ -1,0 +1,12 @@
+name: pistachio
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy
+  - pandas
+  - jinja2
+  - jupyter
+  - nbstripout
+prefix: /opt/anaconda3/envs/pistachio
