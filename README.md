@@ -42,13 +42,13 @@ You need to update `config.py` to match your OOTP save in these areas and then s
 
 ⚠️ You **must** update these before running `main.py`, or it won’t work.
 
-### Optional Config Settings
+### Other optional Config Settings
 
 - `club_lookup`: Maps team numbers to abbreviations (default set to MLB)
 - `POSITION_THRESHOLDS`: Minimum fielding ratings by position
-- **Pitcher thresholds**: Defines starter vs reliever status
+- Pitcher thresholds: Defines starter vs reliever status (default is a starter has 3 pitches rated 45 above and stamina at 40 or above)
 
-ℹ️ The code expects ratings on the **20–80 scale** in increments of **5**.
+ℹ️ The code expects the game to output ratings on the **20–80 scale** in increments of **5**. It won't work well on other settings.
 
 ---
 
@@ -56,7 +56,7 @@ You need to update `config.py` to match your OOTP save in these areas and then s
 
 - **Player IDs** saved in `flagged.txt` can be found in outputs by:
   - Typing `flag` in the search bar
-  - Using the **Custom Search Builder** in the HTML to search for 'flag equals flag'
+  - Using the 'Custom Search Builder' in the HTML to search for 'flag equals flag'
 
 This is useful for tracking:
 - Draft prospects  
@@ -66,7 +66,7 @@ This is useful for tracking:
 
 ## Extras
 
-- Example outputs are included in the `outputs` folder  
+- Examples of the html outputs are included in the `outputs` folder  
   (Note: these will be overwritten once you successfully run the code in main.py with your own stuff based on your OOTP save)
 
 - Feedback and pull requests welcome
