@@ -32,7 +32,7 @@ While not perfect, the testing method is designed to be rigorous.
 
 ## Configuration Instructions
 
-Update `config.py` to match your OOTP save:
+You need to update `config.py` to match your OOTP save in these areas and then save the file:
 
 - `filepath`: Path to your CSV exports from OOTP  
 - `export_filepath`: Folder for saving HTML outputs  
