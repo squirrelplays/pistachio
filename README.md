@@ -1,6 +1,6 @@
 # Pistachio
 
-**Pistachio** is a projection system for the computer game *Out of the Park Baseball (OOTP)*.
+**Pistachio** is a projection system for the computer game *Out of the Park Baseball 2026 (OOTP 26)*.
 
 ## What It Projects
 
@@ -22,11 +22,10 @@ When run successfully, the system generates three HTML pages:
 
 ## Based on OOTP 26
 
-These projections are built from the ground up for **OOTP 26**.  
-While not perfect, the testing method is designed to be rigorous.
+These projections are built from the ground up for **OOTP 26**.  While not perfect, the testing method is intended to be rigorous.
 
-📊 **Testing data and methodology** (Google Sheets):  
-[Detailed spreadsheet](https://docs.google.com/spreadsheets/d/19f0pZUqyonjDa2AwHckd8Al9H-wmBC6nvM-Y0RzzhSs/edit?gid=202842399#gid=202842399)
+The underlying testing data and methodology is set out in detail in this Google Sheet:
+https://docs.google.com/spreadsheets/d/19f0pZUqyonjDa2AwHckd8Al9H-wmBC6nvM-Y0RzzhSs/edit?gid=202842399#gid=202842399
 
 ---
 
