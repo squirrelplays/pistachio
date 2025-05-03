@@ -1,51 +1,74 @@
-Pistachio is a projection system for the computer game Out of the Park Baseball.
+# Pistachio
 
-It projects:
+**Pistachio** is a projection system for the computer game *Out of the Park Baseball (OOTP)*.
 
-wOBA and WAR by position for position players
+## What It Projects
 
-'Pitching wOBA' and WAR for starter and reliever pitchers
+- **Position players**:  
+  - wOBA  
+  - WAR (by position)
 
-Once successfully run the projections will output in three html pages:
+- **Pitchers**:  
+  - "Pitching wOBA"  
+  - WAR (for starters and relievers)
 
-pitchers.html shows pitchers and pitching prospects
+## Output
 
-hitters.html shows hitters
+When run successfully, the system generates three HTML pages:
 
-hit_prospects.html shows hitter prospects
+- `pitchers.html`: Pitchers and pitching prospects  
+- `hitters.html`: Hitters  
+- `hit_prospects.html`: Hitter prospects
 
-These projections are now built ground-up based on OOTP 26 - the testing method is not perfect but it does attempt to be rigorous. 
+## Based on OOTP 26
 
-The underlying testing data and method is posted in detail here: https://docs.google.com/spreadsheets/d/19f0pZUqyonjDa2AwHckd8Al9H-wmBC6nvM-Y0RzzhSs/edit?gid=202842399#gid=202842399
+These projections are built from the ground up for **OOTP 26**.  
+While not perfect, the testing method is designed to be rigorous.
 
-In order to configure the code to your OOTP save you need to update config.py to reflect:
+📊 **Testing data and methodology** (Google Sheets):  
+[Detailed spreadsheet](https://docs.google.com/spreadsheets/d/19f0pZUqyonjDa2AwHckd8Al9H-wmBC6nvM-Y0RzzhSs/edit?gid=202842399#gid=202842399)
 
-filepath <- this is the filepath that your csv files from OOTP are saved in, that this code reads
+---
 
-export_filepath <- this is the folder into which the code saves its html outputs
+## Configuration Instructions
 
-pistachio_filepath <- this is the folder that main.py and the other related scripts lives in
+Update `config.py` to match your OOTP save:
 
-ID = 3332 <- this is your scout's coach_id taken from coaches.csv
+- `filepath`: Path to your CSV exports from OOTP  
+- `export_filepath`: Folder for saving HTML outputs  
+- `pistachio_filepath`: Folder containing `main.py` and other scripts  
+- `ID = 3332`: Your scout’s `coach_id` from `coaches.csv`  
+- `team_managed = 'CHC'`: Your in-game team abbreviation
 
-team_managed = 'CHC'  <- this is the team you manage in game
+⚠️ You **must** update these before running `main.py`, or it won’t work.
 
-You need to update these before you try to run main.py else it won't work.
+### Optional Config Settings
 
-Some other things you can update in config.py if helpful include:
+- `club_lookup`: Maps team numbers to abbreviations (default set to MLB)
+- `POSITION_THRESHOLDS`: Minimum fielding ratings by position
+- **Pitcher thresholds**: Defines starter vs reliever status
 
-club_lookup which is a map of the team numbers to their abbreviations (i.e. 6 = CHC) - this is set to MLB defaults
+ℹ️ The code expects ratings on the **20–80 scale** in increments of **5**.
 
-POSITION_THRESHOLDS which is minimum fielding ratings by position
+---
 
-Pitcher thresholds that determine whether a pitcher is a starter or a reliever
+## Additional Info
 
-The code is expecting your ratings to be set on the 20-80 scale in increments of 5 and needs this in order to work.
+- **Player IDs** saved in `flagged.txt` can be found in outputs by:
+  - Typing `flag` in the search bar
+  - Using the **Custom Search Builder** in the HTML to search for 'flag equals flag'
 
-Pull requests and feedback welcomed.
+This is useful for tracking:
+- Draft prospects  
+- Custom shortlists created in-game
 
-OOTP forums post (I am the username 'Squirrel' in this post): https://forums.ootpdevelopments.com/showthread.php?t=361580
+---
 
-Player ID numbers saved in 'flagged.txt' can be found in the outputs by typing 'flag' in the search box at the top of the html or using the 'custom search builder' at the top of the html output pages. This can be used for eg draft prospects, or any other shortlist of players created in-game.
+## Extras
 
-I've left example html outputs in the 'outputs' folder but once you run main.py successfully you will overwrite it with the outputs from your OOTP save.
+- Example outputs are included in the `outputs` folder  
+  (Note: these will be overwritten once you successfully run the code in main.py with your own stuff based on your OOTP save)
+
+- Feedback and pull requests welcome
+
+🧵 [OOTP Forum Post (by "Squirrel")](https://forums.ootpdevelopments.com/showthread.php?t=361580)
