@@ -14,7 +14,7 @@
 
 ## Output
 
-When run successfully, the system generates three HTML pages:
+When run successfully, the system generates three HTML pages of projections:
 
 - `pitchers.html`: Pitchers and pitching prospects  
 - `hitters.html`: Hitters  
@@ -45,7 +45,7 @@ You need to update `config.py` to match your OOTP save in these areas and then s
 
 - `club_lookup`: Maps team numbers to abbreviations (default set to MLB)
 - `POSITION_THRESHOLDS`: Minimum fielding ratings by position
-- Pitcher thresholds: Defines starter vs reliever status (default is a starter has 3 pitches rated 45 above and stamina at 40 or above)
+- Pitcher thresholds: Defines starter vs reliever status (default setting is that a starter has at least 3 pitches rated 45 or above and stamina at 40 or above; a reliever has at least two pitches rated 45 or above, with no stamina condition)
 
 ℹ️ The code expects the game to output ratings on the **20–80 scale** in increments of **5**. It won't work well on other settings.
 
@@ -58,8 +58,10 @@ You need to update `config.py` to match your OOTP save in these areas and then s
   - Using the 'Custom Search Builder' in the HTML to search for 'flag equals flag'
 
 This is useful for tracking:
-- Draft prospects  
-- Custom shortlists created in-game
+- Draft prospects
+- Free agents
+- Waiver wire
+- Any other custom shortlists created in-game
 
 ---
 
