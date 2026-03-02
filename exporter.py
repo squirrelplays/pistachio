@@ -1,13 +1,8 @@
-from config import export_filepath, COLUMNS_TO_BLANK_BEFORE_EXPORT
-import pandas as pd
+from config import COLUMNS_TO_BLANK_BEFORE_EXPORT, export_filepath
+
 
 def export_advanced_html(
-    df,
-    filename,
-    columns,
-    title="Data Table",
-    row_filter=None,
-    page_len=100
+    df, filename, columns, title="Data Table", row_filter=None, page_len=100
 ):
     """
     Export df[columns] to an HTML file with DataTables (using the searchbuilder extension).
@@ -29,12 +24,39 @@ def export_advanced_html(
                 return fmt_func(val)
             except Exception:
                 return val
+
         return wrapped
 
     # Apply baseball‑style formatting
     fmt = {}
     for col in working_df.columns:
-        if col in ("best", "bestP", "war_hitting", "sp_war", "rp_war", "sp_warP", "rp_warP","DH", "C", "CF", "RF", "LF", "SS", "2B", "3B", "1B", "DHP", "1BP", "2BP", "3BP", "SSP", "LFP", "CFP", "RFP", "CP"):
+        if col in (
+            "best",
+            "bestP",
+            "war_hitting",
+            "sp_war",
+            "rp_war",
+            "sp_warP",
+            "rp_warP",
+            "DH",
+            "C",
+            "CF",
+            "RF",
+            "LF",
+            "SS",
+            "2B",
+            "3B",
+            "1B",
+            "DHP",
+            "1BP",
+            "2BP",
+            "3BP",
+            "SSP",
+            "LFP",
+            "CFP",
+            "RFP",
+            "CP",
+        ):
             fmt[col] = safe_format("{:.1f}".format)
         elif col.endswith("_def"):
             fmt[col] = safe_format("{:.1f}".format)
@@ -48,24 +70,41 @@ def export_advanced_html(
     styled = working_df.style.format(fmt)
     html_table = styled.to_html(index=False, escape=False)
     # Ensure the table has the id DataTables expects:
-    html_table = html_table.replace('<table ', '<table id="data" ', 1)
+    html_table = html_table.replace("<table ", '<table id="data" ', 1)
 
-    full = HTML_DARK_TEMPLATE.format(
-        title=title,
-        table=html_table,
-        page_len=page_len
-    )
+    full = HTML_DARK_TEMPLATE.format(title=title, table=html_table, page_len=page_len)
     path = export_filepath / filename
-    with open(path, "w") as f:
+    with open(path, "w", encoding="utf-8") as f:
         f.write(full)
     print(f"✅ Exported {title} → {path}")
+
 
 def export_hitters(df):
     """
     Wrapper to export the hitters page.
     """
     cols = [
-        "name", "org", "age", "pa", "best", "pos", "wRC+", "wOBA", "wOBAR", "wOBAL", "DH", "C", "CF", "RF", "LF", "SS", "2B", "3B", "1B", "wOBAP", "flag"
+        "name",
+        "org",
+        "age",
+        "pa",
+        "best",
+        "pos",
+        "wRC+",
+        "wOBA",
+        "wOBAR",
+        "wOBAL",
+        "DH",
+        "C",
+        "CF",
+        "RF",
+        "LF",
+        "SS",
+        "2B",
+        "3B",
+        "1B",
+        "wOBAP",
+        "flag",
     ]
     filt = df["wOBA"] > 0.270
     export_advanced_html(
@@ -74,40 +113,100 @@ def export_hitters(df):
         columns=cols,
         title="Hitters",
         row_filter=filt,
-        page_len=100
+        page_len=100,
     )
+
 
 EXPORT_PAGES = [
     {
         "filename": "hitters.html",
         "title": "Hitters",
         "columns": [
-            "name", "org", "minor", "age", "pa", "best", "bestP", "pos", "field", "wRC+", "wOBA", "wOBAR", "wOBAL", "wOBAP",
-            "DH", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "C",  "flag"
+            "name",
+            "org",
+            "minor",
+            "age",
+            "pa",
+            "best",
+            "bestP",
+            "pos",
+            "field",
+            "wRC+",
+            "wOBA",
+            "wOBAR",
+            "wOBAL",
+            "wOBAP",
+            "DH",
+            "1B",
+            "2B",
+            "3B",
+            "SS",
+            "LF",
+            "CF",
+            "RF",
+            "C",
+            "flag",
         ],
         "filter": lambda df: df["wOBAP"] > 0.200,
-        "page_len": 100
+        "page_len": 100,
     },
     {
         "filename": "pitchers.html",
         "title": "Pitchers",
-        "columns": [ 
-            "name", "org", "minor", "age", "ip", "sp_war", "rp_war", "pwOBA", "pwOBAR", "pwOBAL", "sp_warP", "rp_warP", "pwOBAP", "flag"    
+        "columns": [
+            "name",
+            "org",
+            "minor",
+            "age",
+            "ip",
+            "sp_war",
+            "rp_war",
+            "pwOBA",
+            "pwOBAR",
+            "pwOBAL",
+            "sp_warP",
+            "rp_warP",
+            "pwOBAP",
+            "flag",
         ],
         "filter": lambda df: df["pwOBAP"] < 1.000,
-        "page_len": 100
+        "page_len": 100,
     },
     {
         "filename": "hit_prospects.html",
         "title": "Hitter prospects",
         "columns": [
-            "name", "org", "minor", "age", "pa", "best", "bestP", "posP", "field", "wOBA", "wOBAR", "wOBAL", "wOBAP", "DHP", "1BP", "2BP", "3BP", "SSP", "LFP", "CFP", "RFP", "CP", "Cfram", "flag" 
+            "name",
+            "org",
+            "minor",
+            "age",
+            "pa",
+            "best",
+            "bestP",
+            "posP",
+            "field",
+            "wOBA",
+            "wOBAR",
+            "wOBAL",
+            "wOBAP",
+            "DHP",
+            "1BP",
+            "2BP",
+            "3BP",
+            "SSP",
+            "LFP",
+            "CFP",
+            "RFP",
+            "CP",
+            "Cfram",
+            "flag",
         ],
         "filter": lambda df: df["wOBAP"] > 0.200,
-        "page_len": 100
+        "page_len": 100,
     },
     # More pages can be added here
 ]
+
 
 def export_html_pages(df):
     """
@@ -121,8 +220,9 @@ def export_html_pages(df):
             columns=page["columns"],
             title=page["title"],
             row_filter=filt,
-            page_len=page.get("page_len", 100)
+            page_len=page.get("page_len", 100),
         )
+
 
 # ------------------------------------------------------------------
 # Advanced DataTables HTML export (dark theme, compact, SearchBuilder)
